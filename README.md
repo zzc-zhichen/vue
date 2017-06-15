@@ -103,7 +103,102 @@ javascript:
 * 绑定数据袋节点属性上时，需要使用v-bind指令，这个元素节点的title属性和Vue实例的message属性绑定到一起，从而建立数据与该属性值的绑定，也可以使用v-bind:href='url'的缩写方式:href='url';
 * v-once指令能够让你执行一次性的插值，当数据改变时，插值处的内容不会更新;
 
+>使用JS表达式处理数据
 
+html:
+````
+	<div id='app'>
+		<p v-once>{{num + 10}}</p>
+    	<p v-if='seen'>{{message + 'vue'}}</p>
+	</div>
+````
+Javascript:
+````
+	var app = new Vue({
+    	el:'#app',
+        data:{
+        	num:10,
+            message: 'hello vue',
+            seen:true
+        }
+    })
+````
+
+* v-once 只一次有效，随后更改app.num 视图不改变
+* v-if 当布尔值值为true时DOM存在，当布尔值为false时DOM不存在
+
+>使用过滤器来格式化数据
+
+html:
+````
+	<div id='app'>
+    	<p v-if="seen">{{message | capitalize}}</p>
+	</div>
+````
+Javascript:
+````
+    var app = new Vue({
+        el:'#app',
+        data:{
+            message: 'hello vue!',
+            seen: true
+        },
+        filters: {
+            capitalize:function (value) {
+                if (!value) return ''
+                value = value.toString()
+                return value.charAt(0).toUpperCase() + value.slice(1)
+            }
+        }
+    })
+````
+
+>条件指令控制DOM元素的显示操作
+
+html：
+````
+	<div id='app'>
+    	<p v-if="seen">{{message}}</p>
+	</div>
+````
+Javascript:
+````
+    var app = new Vue({
+        el:'#app',
+        data:{
+            message:'hello vue!',
+            seen: true
+        }
+    })
+````
+
+>循环指令实现数据的遍历
+
+html：
+````
+	<div id='app'>
+    	<ol>
+        	<li v-for="item in items">
+            	{{ item.text }}
+        	</li>
+    	</ol>
+	</div>
+````
+Javascript:
+````
+	    var app = new Vue({
+        el:'#app',
+        data:{
+            items:[
+                {text:'Vue'},
+                {text:'Angular'},
+                {text:'React'}
+            ]
+        }
+    })
+````
+
+* v-for可以绑定数组型数据进行绑定，并使用item in items形式进行数据的遍历操作
 
 
 
