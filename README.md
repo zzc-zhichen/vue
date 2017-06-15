@@ -200,6 +200,29 @@ Javascript:
 
 * v-for可以绑定数组型数据进行绑定，并使用item in items形式进行数据的遍历操作
 
+> 事件绑定指令可以实现事件监听
+
+html:
+````
+	<div id='app'>
+    	<p>{{message}}</p>
+    	<button v-	on:click="reverseMessage">reverseMessage</button>
+	</div>
+````
+Javascript:
+````
+	   var app = new Vue({
+        el:'#app',
+        data:{
+            message:'hello vue!'
+        },
+        methods:{
+            reverseMessage:function () {
+                this.message = this.message.split('').reverse().join('');
+            }
+        }
+    })
+````
 
 
 
