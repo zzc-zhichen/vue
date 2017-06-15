@@ -224,6 +224,9 @@ Javascript:
     })
 ````
 
+* v-on指令用于监听事件操作，click="reverseMessage"定义点击事件后执行的回调函数;
+* v-on指令也可以采用缩写方式: @click="method"
+* 在Vue实例中，提供methods接口用于统一定义函数
 
 
 
