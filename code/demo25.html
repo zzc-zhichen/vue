@@ -7,28 +7,37 @@
 </head>
 <body>
     <div id="app">
-        <child some-text="hello"></child>
-        <br>
-        <child v-bind:some-text="message"></child>
+        <p>{{total}}</p>
+        <button-counter v-on:incrementTotal></button-counter>
+        <button-counter @increment="incrementTotal"></button-counter>
     </div>
 
 
 
 <script>
-    Vue.component('child',{
-        template:'<div>{{someText}}</div>',
-        props:['someText']
+    Vue.component('button-counter',{
+        template:'<button v-on:click="increment">{{counter}}</button>',
+        data:function () {
+            return{
+                counter:0
+            }
+        },
+        methods:{
+            increment:function () {
+                this.counter+=1;
+                this.$emit('increment')
+            }
+        }
     })
-    var Child = {
-        template:'<h3>Hello vue!</h3>'
-    }
     var app = new Vue({
         el:'#app',
-        components:{
-            'my-component':Child
-        },
         data:{
-            message:'你好'
+            total:0
+        },
+        methods:{
+            incrementTotal:function () {
+                this.total += 1;
+            }
         }
     })
 </script>
