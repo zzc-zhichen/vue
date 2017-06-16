@@ -7,25 +7,24 @@
 </head>
 <body>
     <div id="app">
-        <my-component>
-            <heading></heading>
-        </my-component>
+        <counter></counter>
+        <counter></counter>
+        <counter></counter>
     </div>
 
 
 
 <script>
-    Vue.component('my-component',{
-        template:'<div>my-first-component</div>'
-    })
-    var Child = {
-        template:'<h3>Hello vue!</h3>'
-    }
-    var app = new Vue({
-        el:'#app',
-        components:{
-            'my-component':Child
+    Vue.component('counter',{
+        template:'<button @click="count+=1">{{count}}</button>',
+        data:function () {
+            return {
+                count:0
+            }
         }
+    })
+    var app = new Vue({
+        el:'#app'
     })
 </script>
 </body>
