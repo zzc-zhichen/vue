@@ -7,7 +7,8 @@
 </head>
 <body>
 <div id="app">
-    <p v-on:click="greet">{{message}}</p>
+    <p>{{message}}</p>
+    <input type="text" v-model="message">
 </div>
 
 
@@ -16,11 +17,6 @@
         el:'#app',
         data:{
            message:"Hello vue!"
-        },
-        methods:{
-            greet:function (event) {
-                alert(this.message)
-            }
         }
     })
 </script>
