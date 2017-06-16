@@ -7,21 +7,24 @@
 </head>
 <body>
     <div id="app">
-        <input type="checkbox" id="SGYY" value="SGYY" v-model="checked">
-        <label for="SGYY">Man</label>
-        <br>
-        <input type="checkbox" id="HLM" value="HLM" v-model="checked">
-        <label for="HLM">Woman</label>
-        <div style="margin-left: 10px;">Checked Name:{{checked}}</div>
+        <my-component>
+            <heading></heading>
+        </my-component>
     </div>
 
 
 
 <script>
+    Vue.component('my-component',{
+        template:'<div>my-first-component</div>'
+    })
+    var Child = {
+        template:'<h3>Hello vue!</h3>'
+    }
     var app = new Vue({
         el:'#app',
-        data:{
-           checked:[]
+        components:{
+            'my-component':Child
         }
     })
 </script>
