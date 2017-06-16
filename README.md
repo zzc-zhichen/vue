@@ -20,11 +20,11 @@ html：
 ---
 javascript：
 ````
-	var vm = new Vue({
-		el:'#demo',
-    	data:{},
-    	methods:{}
-	})
+var vm = new Vue({
+    el:'#demo',
+    data:{},
+    methods:{}
+})
 ````
 
 * 使用Vue 构造函数创建Vue实例，然后通过Vue实例的el接口'#id'实现和HTML元素的挂载；
@@ -35,22 +35,22 @@ javascript：
 
 html:
 ````
-	<div id='demo'>
-    	{{message}}
-    </div>
+<div id='demo'>
+    {{message}}
+</div>
 ````
 
 javascript:
 ````
-	var demo = new Vue({
-    	el:'#demo',
-        data:{
-        	message:'hello vue!'
-        }
-    })
-    //vue.js提供$进行获取demo这一实例的对象
-    demo.$el === documenr.getElementById('demo')//true
-    app.$data.message//hello vue
+var demo = new Vue({
+    el:'#demo',
+    data:{
+        message:'hello vue!'
+    }
+})
+//vue.js提供$进行获取demo这一实例的对象
+demo.$el === documenr.getElementById('demo')//true
+app.$data.message//hello vue
 ````
 
 vue是具有响应式更新的，当在控制台改变demo.message的值时，前台视图会实时更新，但是只有在实例创建的同时进行初始化才具有响应式更新，若在实例创建之后添加是不会触发视图更新的。
@@ -60,20 +60,20 @@ vue是具有响应式更新的，当在控制台改变demo.message的值时，�
 
 html:
 ````
-	<div id='app1'>
-    	{{message}}
-        <div v-html='hi'></div>
-    </div>
+<div id='app1'>
+    {{message}}
+    <div v-html='hi'></div>
+</div>
 ````
 javascript:
 ````
-	var app1 = new Vue({
-    	el:'#app1',
-        data: {
-        	message: 'hello vue！'，
-            hi: '<h1>hi</h1>'
-        }
-    })
+var app1 = new Vue({
+    el:'#app1',
+    data: {
+        message: 'hello vue！'，
+        hi: '<h1>hi</h1>'
+    }
+})
 ````
 
 * HTML部分实现数据的动态绑定，这个数据是vue实例的属性值
@@ -84,19 +84,19 @@ javascript:
 
 html:
 ````
-	<div id='app' v-bind:title='message' v-bind='red' v-once>
-		{{message}}
-    </div>
+<div id='app' v-bind:title='message' v-bind='red' v-once>
+    {{message}}
+</div>
 ````
 javascript:
 ````
-	var app = new Vue({
-    	el:'#app',
-        data:{
-        	message:'hello vue!',
-            red:'color:red'
-        }
-    })
+var app = new Vue({
+    el:'#app',
+    data:{
+        message:'hello vue!',
+        red:'color:red'
+    }
+})
 ````
 
 * 定义在Vue实例的data接口上的数据绑定是灵活的，可以绑定在DOM节点内部，也可以绑在属性上；
@@ -107,21 +107,21 @@ javascript:
 
 html:
 ````
-	<div id='app'>
-		<p v-once>{{num + 10}}</p>
-    	<p v-if='seen'>{{message + 'vue'}}</p>
-	</div>
+<div id='app'>
+    <p v-once>{{num + 10}}</p>
+    <p v-if='seen'>{{message + 'vue'}}</p>
+</div>
 ````
 Javascript:
 ````
-	var app = new Vue({
-    	el:'#app',
-        data:{
-        	num:10,
-            message: 'hello vue',
-            seen:true
-        }
-    })
+var app = new Vue({
+    el:'#app',
+    data:{
+        num:10,
+        message: 'hello vue',
+        seen:true
+    }
+})
 ````
 
 * v-once 只一次有效，随后更改app.num 视图不改变
@@ -131,58 +131,58 @@ Javascript:
 
 html:
 ````
-	<div id='app'>
-    	<p v-if="seen">{{message | capitalize}}</p>
-	</div>
+<div id='app'>
+    <p v-if="seen">{{message | capitalize}}</p>
+</div>
 ````
 Javascript:
 ````
-    var app = new Vue({
-        el:'#app',
-        data:{
-            message: 'hello vue!',
-            seen: true
-        },
-        filters: {
-            capitalize:function (value) {
-                if (!value) return ''
-                value = value.toString()
-                return value.charAt(0).toUpperCase() + value.slice(1)
-            }
+var app = new Vue({
+    el:'#app',
+    data:{
+        message: 'hello vue!',
+        seen: true
+    },
+    filters: {
+        capitalize:function (value) {
+            if (!value) return ''
+            value = value.toString()
+            return value.charAt(0).toUpperCase() + value.slice(1)
         }
-    })
+    }
+})
 ````
 
 >条件指令控制DOM元素的显示操作
 
 html：
 ````
-	<div id='app'>
-    	<p v-if="seen">{{message}}</p>
-	</div>
+<div id='app'>
+    <p v-if="seen">{{message}}</p>
+</div>
 ````
 Javascript:
 ````
-    var app = new Vue({
-        el:'#app',
-        data:{
-            message:'hello vue!',
-            seen: true
-        }
-    })
+var app = new Vue({
+    el:'#app',
+    data:{
+        message:'hello vue!',
+        seen: true
+    }
+})
 ````
 
 >循环指令实现数据的遍历
 
 html：
 ````
-	<div id='app'>
-    	<ol>
-        	<li v-for="item in items">
-            	{{ item.text }}
-        	</li>
-    	</ol>
-	</div>
+<div id='app'>
+    <ol>
+        <li v-for="item in items">
+            {{ item.text }}
+        </li>
+    </ol>
+</div>
 ````
 Javascript:
 ````
@@ -204,24 +204,24 @@ var app = new Vue({
 
 html:
 ````
-	<div id='app'>
-    	<p>{{message}}</p>
-    	<button v-	on:click="reverseMessage">reverseMessage</button>
-	</div>
+<div id='app'>
+    <p>{{message}}</p>
+    <button v-	on:click="reverseMessage">reverseMessage</button>
+</div>
 ````
 Javascript:
 ````
-	   var app = new Vue({
-        el:'#app',
-        data:{
-            message:'hello vue!'
-        },
-        methods:{
-            reverseMessage:function () {
-                this.message = this.message.split('').reverse().join('');
-            }
+var app = new Vue({
+    el:'#app',
+    data:{
+        message:'hello vue!'
+    },
+    methods:{
+        reverseMessage:function () {
+            this.message = this.message.split('').reverse().join('');
         }
-    })
+    }
+})
 ````
 
 * v-on指令用于监听事件操作，click="reverseMessage"定义点击事件后执行的回调函数;
@@ -243,24 +243,24 @@ Javascript:
 
 html:
 ````
-	<div id='app'>
-    	<p>Original message : {{message}}</p>
-    	<p>Reversed message : {{ReversedMessage}}</p>
-	</div>
+<div id='app'>
+    <p>Original message : {{message}}</p>
+    <p>Reversed message : {{ReversedMessage}}</p>
+</div>
 ````
 Javascript:
 ````
-	    var app = new Vue({
-        el:'#app',
-        data:{
-            message:'hello vue!'
-        },
-        computed:{
-            ReversedMessage:function () {
-               return this.message.split('').reverse().join('');
-            }
+var app = new Vue({
+    el:'#app',
+    data:{
+        message:'hello vue!'
+    },
+    computed:{
+        ReversedMessage:function () {
+           return this.message.split('').reverse().join('');
         }
-    })
+    }
+})
 ````
 
 * Vue实例提供computed对象,我们可以在对象内部定义需要进行计算的属性ReverseMessage,而提供的函数将作为属性的getter,即获取器
@@ -271,30 +271,30 @@ Javascript:
 
 html:
 ````
-	<div id='app'>
-    	<p>Original message : {{message}}</p>
-    	<p>Reversed message : {{ReversedMessage}}</p>
-    	<p>Reversed message : {{reversedMessage()}}</p>
-	</div>
+<div id='app'>
+    <p>Original message : {{message}}</p>
+    <p>Reversed message : {{ReversedMessage}}</p>
+    <p>Reversed message : {{reversedMessage()}}</p>
+</div>
 ````
 Javascript:
 ````
-    var app = new Vue({
-        el:'#app',
-        data:{
-            message:'hello vue!'
-        },
-        computed:{
-            ReversedMessage:function () {
-               return this.message.split('').reverse().join('');
-            }
-        },
-        methods:{
-            reversedMessage:function () {
-                return this.message.split('').reverse().join('')
-            }
+var app = new Vue({
+    el:'#app',
+    data:{
+        message:'hello vue!'
+    },
+    computed:{
+        ReversedMessage:function () {
+           return this.message.split('').reverse().join('');
         }
-    })
+    },
+    methods:{
+        reversedMessage:function () {
+            return this.message.split('').reverse().join('')
+        }
+    }
+})
 ````
 
 * 通过Vue实例的methods接口,我们在模板中调用reversedMessage函数同样实现需求;
@@ -307,29 +307,29 @@ Vue实例的computed对象默认属性只有getter,如果你要设置数据,可�
 
 html：
 ````
-	<div id='app'>
-    	<p>Hi,I'm{{fullName}}</p>
-	</div>
+<div id='app'>
+    <p>Hi,I'm{{fullName}}</p>
+</div>
 ````
 Javascript：
 ````
-    var app = new Vue({
-        el:'#app',
-        data:{
-            message:'hello vue!',
-            name:'Tom'
-        },
-        computed:{
-            fullName:{
-                get:function () {
-                    return this.name
-                },
-                set:function (value) {
-                    this.name = value
-                }
+var app = new Vue({
+    el:'#app',
+    data:{
+        message:'hello vue!',
+        name:'Tom'
+    },
+    computed:{
+        fullName:{
+            get:function () {
+                return this.name
+            },
+            set:function (value) {
+                this.name = value
             }
         }
-    })
+    }
+})
 ````
 
 2.5Class与Style的绑定
@@ -337,83 +337,83 @@ Javascript：
 
 Html:
 ````
-	<div id='app'>
-    	<!--直接绑定对象的内容-->
-    	<p class="static" v-bind:class="{active:isActive,error:hasError}">Hello world</p>
-    	 <!--绑定对象-->
-    	<p v-bind:class="classObj">啊偶</p>
-    	<p v-bind:class="style">你好</p>
-    	<!--绑定数组-->
-    	<p v-bind:class="[staticClass,activeClass,errorClass]">奥布拉</p>
-    	<button @click="changeColor">click me</button>
-	</div>
+<div id='app'>
+    <!--直接绑定对象的内容-->
+    <p class="static" v-bind:class="{active:isActive,error:hasError}">Hello world</p>
+     <!--绑定对象-->
+    <p v-bind:class="classObj">啊偶</p>
+    <p v-bind:class="style">你好</p>
+    <!--绑定数组-->
+    <p v-bind:class="[staticClass,activeClass,errorClass]">奥布拉</p>
+    <button @click="changeColor">click me</button>
+</div>
 ````
 Css:
 ````
-    .static{
-    	width: 200px;
-        height: 100px;
-        background: #cccccc;
-    }
-    .active{
-        color: red;
-    }
-    .error {
-        font-weight: 800;
-    }
+.static{
+    width: 200px;
+    height: 100px;
+    background: #cccccc;
+}
+.active{
+    color: red;
+}
+.error {
+    font-weight: 800;
+}
 ````
 Javascript:
 ````
-   var app = new Vue({
-        el:'#app',
-        data:{
-            isActive:true,
-            hasError:true,
-            classObj:{
+var app = new Vue({
+    el:'#app',
+    data:{
+        isActive:true,
+        hasError:true,
+        classObj:{
+            static:true,
+            active:true,
+            error:true
+        },
+        staticClass:'static',
+        activeClass:'active',
+        errorClass:'error'
+    },
+    computed:{
+        style:function () {
+            return{
+                active:this.isActive,
                 static:true,
-                active:true,
-                error:true
-            },
-            staticClass:'static',
-            activeClass:'active',
-            errorClass:'error'
-        },
-        computed:{
-            style:function () {
-                return{
-                    active:this.isActive,
-                    static:true,
-                    error:this.hasError
-                }
-            }
-        },
-        methods: {
-            changeColor:function () {
-                this.isActive = !this.isActive
+                error:this.hasError
             }
         }
-    })
+    },
+    methods: {
+        changeColor:function () {
+            this.isActive = !this.isActive
+        }
+    }
+})
 ````
 
 * 通过v-bind:class="{}"或v-bind=[]方式为模板绑定class
 * 通过v-bind:class="{active:isActive,error:hasError}"绑定class，首先要在css中设置.active和.error,然后再Vue实例的data对象中设置isActive和hasError的布尔值;也可以直接传一个对象给class,即v-bind="classObj",再在data对象上直接赋值;
 ````
-	data:{
-    	classObj:{
-        	static:true,
-            active:true,
-            error:true
-        }
+data:{
+    classObj:{
+        static:true,
+        active:true,
+        error:true
     }
+}
 ````
 
 * 你也可以通过传递数组的方式为class赋值v-bind:class="[staticClass,activeClass,errorClass]",此时你需要在data对象上为数组的元素的属性赋值:
 ````
-	data:{
-    	staticClass:'static',
-        activeClass:'active',
-        errorClass:'error'
-    }
+data:{
+    staticClass:'static',
+    activeClass:'active',
+    errorClass:'error'
+}
 ````
 
 **无论是哪种方式，前提都是css中的class要先设定
@@ -422,27 +422,27 @@ Javascript:
 
 html:
 ````
-	<div id='app'>
-    	<p v-bind:style="styleObj">Hello vue!</p>
-    	<p v-bind:style="[styleObj,bgObj]">你好</p>
-	</div>
+<div id='app'>
+    <p v-bind:style="styleObj">Hello vue!</p>
+    <p v-bind:style="[styleObj,bgObj]">你好</p>
+</div>
 ````
 Javascript:
 ````
-    var app = new Vue({
-        el:'#app',
-        data:{
-            styleObj:{
-                fontWeight:800,
-                color:'red'
-            },
-            bgObj:{
-                width:'100px',
-                height:'80px',
-                background:'#ccc'
-            }
+var app = new Vue({
+    el:'#app',
+    data:{
+        styleObj:{
+            fontWeight:800,
+            color:'red'
+        },
+        bgObj:{
+            width:'100px',
+            height:'80px',
+            background:'#ccc'
         }
-    })
+    }
+})
 ````
 
 * 绑定style到模板的方法有两种, 一是v-bind:style="styleObj",然后在data对象上定义styleObj;而是可以通过数组方式为style传入多个样式对象
@@ -454,25 +454,25 @@ Javascript:
 
 html:
 ````
-	<div id='app'>
-    	<p v-if="ok">Hello vue!</p>
-    	<p v-else>你好Vue!</p>
-    	<template v-if="motto">
-        	<h1>Steve Jobs</h1>
-        	<p>motto:stay hungry ! stay foolish</p>
-    	</template>
-    	<p v-show="ok">Show Me</p>
-	</div>
+<div id='app'>
+    <p v-if="ok">Hello vue!</p>
+    <p v-else>你好Vue!</p>
+    <template v-if="motto">
+        <h1>Steve Jobs</h1>
+        <p>motto:stay hungry ! stay foolish</p>
+    </template>
+    <p v-show="ok">Show Me</p>
+</div>
 ````
 Javascript:
 ````
-    var app = new Vue({
-        el:'#app',
-        data:{
-            ok:true,
-            motto:true
-        }
-    })
+var app = new Vue({
+    el:'#app',
+    data:{
+        ok:true,
+        motto:true
+    }
+})
 ````
 
 * 通过v-if和v-else指令实现条件渲染，其中v-if="value"的value要在data对象中赋布尔值,v-if支持&lt; template &gt;语法
@@ -488,66 +488,66 @@ Javascript:
 
 html:
 ````
-	<div id='app'>
-    	<ol>
-        	<li v-for="book in books">
-            	{{book.name}}
-        	</li>
-    	</ol>
-    	<ul>
-        	<li v-for="(food,index) in foods">
-            	{{index}}---{{food}}---{{delicious}}
-        	</li>
-    	</ul>
-    	<ul>
-        	<li v-for="(value,key,index) in object">
-            	{{index}}·{{key}}·{{value}}
-        	</li>
-    	</ul>
-    	<div>
-        	<span v-for="n in 10" style="margin-left: 5px;">{{n}}</span>
-    	</div>
-    	<span v-for="n in evenNumbers" style="margin-left: 5px;">{{n}}</span>
-    	<span v-for="n in odd(counts)" style="margin-left: 5px;">{{n}}</span>
-	</div>
+<div id='app'>
+    <ol>
+        <li v-for="book in books">
+            {{book.name}}
+        </li>
+    </ol>
+    <ul>
+        <li v-for="(food,index) in foods">
+            {{index}}---{{food}}---{{delicious}}
+        </li>
+    </ul>
+    <ul>
+        <li v-for="(value,key,index) in object">
+            {{index}}·{{key}}·{{value}}
+        </li>
+    </ul>
+    <div>
+        <span v-for="n in 10" style="margin-left: 5px;">{{n}}</span>
+    </div>
+    <span v-for="n in evenNumbers" style="margin-left: 5px;">{{n}}</span>
+    <span v-for="n in odd(counts)" style="margin-left: 5px;">{{n}}</span>
+</div>
 ````
 Javascript:
 ````
-    var app = new Vue({
-        el:'#app',
-        data:{
-            delicious:'delicious',
-            books:[
-                {name:'HongLouMeng'},
-                {name:'SanGuo'}
-            ],
-            foods:[
-                'tomato',
-                'potato',
-                'ice cream'
-            ],
-            object:{
-                name:'lilei',
-                age:'18'
-            },
-            numbers:[1,2,3,4,5,6,7,8,9,10],
-            counts:[1,2,3,4,5]
+var app = new Vue({
+    el:'#app',
+    data:{
+        delicious:'delicious',
+        books:[
+            {name:'HongLouMeng'},
+            {name:'SanGuo'}
+        ],
+        foods:[
+            'tomato',
+            'potato',
+            'ice cream'
+        ],
+        object:{
+            name:'lilei',
+            age:'18'
         },
-        computed:{
-            evenNumbers:function () {
-                return this.numbers.filter(function (number) {
-                    return number%2 === 0;
-                })
-            }
-        },
-        methods:{
-            odd:function (counts) {
-                return counts.filter(function (count) {
-                    return count%2 === 1;
-                })
-            }
+        numbers:[1,2,3,4,5,6,7,8,9,10],
+        counts:[1,2,3,4,5]
+    },
+    computed:{
+        evenNumbers:function () {
+            return this.numbers.filter(function (number) {
+                return number%2 === 0;
+            })
         }
-    })
+    },
+    methods:{
+        odd:function (counts) {
+            return counts.filter(function (count) {
+                return count%2 === 1;
+            })
+        }
+    }
+})
 ````
 
 * v-for指令能够让我们循环渲染列表型数据,数据放在data对象中,类型可以如下:
@@ -581,25 +581,25 @@ data:{
 
 ````
 //数据为数字数组
-	<div>
-		<span v-for="n in numbers">{{n}}</span>
-	</div>
-	//数据为字符数组
-	<ul>
-		<ol v-for="food in foods">{{food}}</ol>
-	</ul>
-	//数据为对象
-	<ul>
-  		<ol v-for="value in object">{{value}}</ol>
-	</ul>
-	//或者
-	<ul>
-  		<ol v-for="(value,key,index) in object">{{index}}.{{key}}.{{value}}</ol>
-	</ul>
-	//数据为对象数组
-	<ul>
-  		<ol v-for="car in cars">{{car.name}}</ol>
-	</ul>
+<div>
+    <span v-for="n in numbers">{{n}}</span>
+</div>
+//数据为字符数组
+<ul>
+    <ol v-for="food in foods">{{food}}</ol>
+</ul>
+//数据为对象
+<ul>
+    <ol v-for="value in object">{{value}}</ol>
+</ul>
+//或者
+<ul>
+    <ol v-for="(value,key,index) in object">{{index}}.{{key}}.{{value}}</ol>
+</ul>
+//数据为对象数组
+<ul>
+    <ol v-for="car in cars">{{car.name}}</ol>
+</ul>
 ````
 
 * 在v-for块中,我们拥有对父作用域属性的完全访问权限
@@ -609,63 +609,63 @@ data:{
 
 html:
 ````
-	<div id="app">
-    	<p v-on:click="counter+=1">{{counter}}</p>
-	</div>
+<div id="app">
+    <p v-on:click="counter+=1">{{counter}}</p>
+</div>
 ````
 Javascript:
 ````
-    var app = new Vue({
-        el:'#app',
-        data:{
-           counter:0
-        }
-    })
+var app = new Vue({
+    el:'#app',
+    data:{
+       counter:0
+    }
+})
 ````
 
 >复杂的事件监听----在methods对象定义回调函数
 
 html:
 ````
-	<div id="app">
-    	<p v-on:click="greet">{{message}}</p>
-	</div>
+<div id="app">
+    <p v-on:click="greet">{{message}}</p>
+</div>
 ````
 Javascript:
 ````
-    var app = new Vue({
-        el:'#app',
-        data:{
-           message:"Hello vue!"
-        },
-        methods:{
-            greet:function (event) {
-                alert(this.message)
-            }
+var app = new Vue({
+    el:'#app',
+    data:{
+       message:"Hello vue!"
+    },
+    methods:{
+        greet:function (event) {
+            alert(this.message)
         }
-    })
+    }
+})
 ````
 >事件修饰符----调用事件对象函数的快捷方式
 
 ````
-  <div v-on:click.prevent="greet">1</div>//等价于event.preventDefault()
-  <div v-on:click.stop="greet">2</div>//等价于event.stopPropagation()
-  <div v-on:click.capture="greet">3</div>//等价于事件回调函数采用捕获阶段监听事件
-  <div v-on:click.self="greet">4</div>//等价于event.target
+<div v-on:click.prevent="greet">1</div>//等价于event.preventDefault()
+<div v-on:click.stop="greet">2</div>//等价于event.stopPropagation()
+<div v-on:click.capture="greet">3</div>//等价于事件回调函数采用捕获阶段监听事件
+<div v-on:click.self="greet">4</div>//等价于event.target
 ````
 >按键修饰符----按键事件的快捷方式
 
 ````
-	常见按键别名包括：
-	- enter
-	- tab
-	- delete
-	- esc
-	- space
-	- up
-	- down
-	- left
-	- right
+常见按键别名包括：
+- enter
+- tab
+- delete
+- esc
+- space
+- up
+- down
+- left
+- right
 ````
 2.8表单控件绑定
 
@@ -673,19 +673,19 @@ Javascript:
 
 html:
 ````
-	<div id="app">
-    	<p>{{message}}</p>
-    	<input type="text" v-model="message">
-	</div>
+<div id="app">
+    <p>{{message}}</p>
+    <input type="text" v-model="message">
+</div>
 ````
 Javascript:
 ````
-    var app = new Vue({
-        el:'#app',
-        data:{
-           message:"Hello vue!"
-        }
-    })
+var app = new Vue({
+    el:'#app',
+    data:{
+       message:"Hello vue!"
+    }
+})
 ````
 
 * 通过v-model指令可以实现数据的双向绑定，即View层的数据变化可以直接改变Model层的数据,而Model层的数据改变也可以直接反映在View层;
@@ -695,24 +695,24 @@ Javascript:
 
 html:
 ````
-    <div id="app">
-        <input type="radio" id="man" value="man" v-model="picked">
-        <label for="man">Man</label>
-        <br>
-        <input type="radio" id="woman" value="woman" v-model="picked">
-        <label for="woman">Woman</label>
-        <div style="margin-left: 10px;"></div>
-    </div>
+<div id="app">
+    <input type="radio" id="man" value="man" v-model="picked">
+    <label for="man">Man</label>
+    <br>
+    <input type="radio" id="woman" value="woman" v-model="picked">
+    <label for="woman">Woman</label>
+    <div style="margin-left: 10px;"></div>
+</div>
 ````
 Javascript:
 ````
-    var app = new Vue({
-        el:'#app',
-        data:{
-           message:"Hello vue!",
-           picked:'man'
-        }
-    })
+var app = new Vue({
+    el:'#app',
+    data:{
+       message:"Hello vue!",
+       picked:'man'
+    }
+})
 ````
 
 * v-model指令绑定data对象的picked属性,该属性默认指向type='radio'的input的value;
@@ -721,23 +721,23 @@ Javascript:
 
 html:
 ````
-    <div id="app">
-        <input type="checkbox" id="SGYY" value="SGYY" v-model="checked">
-        <label for="SGYY">Man</label>
-        <br>
-        <input type="checkbox" id="HLM" value="HLM" v-model="checked">
-        <label for="HLM">Woman</label>
-        <div style="margin-left: 10px;">Checked Name:{{checked}}</div>
-    </div>
+<div id="app">
+    <input type="checkbox" id="SGYY" value="SGYY" v-model="checked">
+    <label for="SGYY">Man</label>
+    <br>
+    <input type="checkbox" id="HLM" value="HLM" v-model="checked">
+    <label for="HLM">Woman</label>
+    <div style="margin-left: 10px;">Checked Name:{{checked}}</div>
+</div>
 ````
 Javascript:
 ````
-    var app = new Vue({
-        el:'#app',
-        data:{
-           checked:[]
-        }
-    })
+var app = new Vue({
+    el:'#app',
+    data:{
+       checked:[]
+    }
+})
 ````
 
 2.9组件
@@ -748,19 +748,19 @@ Javascript:
 >注册组件
 
 ````
-	<div id="app">
-   		<my-component></my-component>
-    </div>
+<div id="app">
+    <my-component></my-component>
+</div>
 
-	Vue.component('my-component',{
-  		template:'<div>my-first-component</div>'
-	})
+Vue.component('my-component',{
+    template:'<div>my-first-component</div>'
+})
 
-	var app = new Vue({
-  		el:'#app',
-  		data:{
-  		}
-	})
+var app = new Vue({
+    el:'#app',
+    data:{
+    }
+})
 ````
 
 * 注册行为必须在创建实例之前;
@@ -770,26 +770,26 @@ Javascript:
 
 html:
 ````
-    <div id="app">
-        <my-component>
-            <heading></heading>
-        </my-component>
-    </div>
+<div id="app">
+    <my-component>
+        <heading></heading>
+    </my-component>
+</div>
 ````
 Javascript:
 ````
-    Vue.component('my-component',{
-        template:'<div>my-first-component</div>'
-    })
-    var Child = {
-        template:'<h3>Hello vue!</h3>'
+Vue.component('my-component',{
+    template:'<div>my-first-component</div>'
+})
+var Child = {
+    template:'<h3>Hello vue!</h3>'
+}
+var app = new Vue({
+    el:'#app',
+    components:{
+        'my-component':Child
     }
-    var app = new Vue({
-        el:'#app',
-        components:{
-            'my-component':Child
-        }
-    })
+})
 ````
 
 * 自定义模板将会销毁之前的DOM结构，重新生成模板结构，所以&lt;heading&gt;会消失不见
@@ -800,33 +800,33 @@ Javascript:
 像这些包含固定样式的元素`<ul>,<ol>,<table>,<select>,`自定义组件中使用这些受限制的元素时会导致渲染失败;
 通常解决方案是使用特殊的is属性：
 ````
-	<table>
-		<tr is="my-component">
-	</table>
+<table>
+    <tr is="my-component">
+</table>
 ````
 >**创建组件的data对象必须是函数**
 
 html:
 ````
-    <div id="app">
-        <counter></counter>
-        <counter></counter>
-        <counter></counter>
-    </div>
+<div id="app">
+    <counter></counter>
+    <counter></counter>
+    <counter></counter>
+</div>
 ````
 Javascript:
 ````
-    Vue.component('counter',{
-        template:'<button @click="count+=1">{{count}}</button>',
-        data:function () {
-            return {
-                count:0
-            }
+Vue.component('counter',{
+    template:'<button @click="count+=1">{{count}}</button>',
+    data:function () {
+        return {
+            count:0
         }
-    })
-    var app = new Vue({
-        el:'#app'
-    })
+    }
+})
+var app = new Vue({
+    el:'#app'
+})
 ````
 
 * 在组件当中定义的数据count必须以函数的形式返回;
@@ -835,30 +835,30 @@ Javascript:
 
 html:
 ````
-    <div id="app">
-        <child some-text="hello"></child>
-        <br>
-        <child v-bind:some-text="message"></child>
-    </div>
+<div id="app">
+    <child some-text="hello"></child>
+    <br>
+    <child v-bind:some-text="message"></child>
+</div>
 ````
 Javascript:
 ````
-    Vue.component('child',{
-        template:'<div>{{someText}}</div>',
-        props:['someText']
-    })
-    var Child = {
-        template:'<h3>Hello vue!</h3>'
+Vue.component('child',{
+    template:'<div>{{someText}}</div>',
+    props:['someText']
+})
+var Child = {
+    template:'<h3>Hello vue!</h3>'
+}
+var app = new Vue({
+    el:'#app',
+    components:{
+        'my-component':Child
+    },
+    data:{
+        message:'你好'
     }
-    var app = new Vue({
-        el:'#app',
-        components:{
-            'my-component':Child
-        },
-        data:{
-            message:'你好'
-        }
-    })
+})
 ````
 
 * 组件实例的作用于是孤立的，这意味着不能并且不应该在子组件的模板内直接引用父组件的数据.可以使用peops把数据传给子组件;
@@ -868,39 +868,39 @@ Javascript:
 
 html:
 ````
-    <div id="app">
-        <p>{{total}}</p>
-        <button-counter v-on:incrementTotal></button-counter>
-        <button-counter @increment="incrementTotal"></button-counter>
-    </div>
+<div id="app">
+    <p>{{total}}</p>
+    <button-counter v-on:incrementTotal></button-counter>
+    <button-counter @increment="incrementTotal"></button-counter>
+</div>
 ````
 Javascript:
 ````
-    Vue.component('button-counter',{
-        template:'<button v-on:click="increment">{{counter}}</button>',
-        data:function () {
-            return{
-                counter:0
-            }
-        },
-        methods:{
-            increment:function () {
-                this.counter+=1;
-                this.$emit('increment')
-            }
+Vue.component('button-counter',{
+    template:'<button v-on:click="increment">{{counter}}</button>',
+    data:function () {
+        return{
+            counter:0
         }
-    })
-    var app = new Vue({
-        el:'#app',
-        data:{
-            total:0
-        },
-        methods:{
-            incrementTotal:function () {
-                this.total += 1;
-            }
+    },
+    methods:{
+        increment:function () {
+            this.counter+=1;
+            this.$emit('increment')
         }
-    })
+    }
+})
+var app = new Vue({
+    el:'#app',
+    data:{
+        total:0
+    },
+    methods:{
+        incrementTotal:function () {
+            this.total += 1;
+        }
+    }
+})
 ````
 
 * 父组件可以通过监听子组件的自定义事件,从而改变父组件的数据;
