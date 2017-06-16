@@ -7,24 +7,29 @@
 </head>
 <body>
     <div id="app">
-        <counter></counter>
-        <counter></counter>
-        <counter></counter>
+        <child some-text="hello"></child>
+        <br>
+        <child v-bind:some-text="message"></child>
     </div>
 
 
 
 <script>
-    Vue.component('counter',{
-        template:'<button @click="count+=1">{{count}}</button>',
-        data:function () {
-            return {
-                count:0
-            }
-        }
+    Vue.component('child',{
+        template:'<div>{{someText}}</div>',
+        props:['someText']
     })
+    var Child = {
+        template:'<h3>Hello vue!</h3>'
+    }
     var app = new Vue({
-        el:'#app'
+        el:'#app',
+        components:{
+            'my-component':Child
+        },
+        data:{
+            message:'你好'
+        }
     })
 </script>
 </body>
