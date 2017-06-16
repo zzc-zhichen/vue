@@ -20,11 +20,11 @@ html：
 ---
 javascript：
 ````
-var vm = new Vue({
-	el:'#demo',
-    data:{},
-    methods:{}
-})
+	var vm = new Vue({
+		el:'#demo',
+    	data:{},
+    	methods:{}
+	})
 ````
 
 * 使用Vue 构造函数创建Vue实例，然后通过Vue实例的el接口'#id'实现和HTML元素的挂载；
@@ -186,16 +186,16 @@ html：
 ````
 Javascript:
 ````
-	    var app = new Vue({
-        el:'#app',
-        data:{
-            items:[
-                {text:'Vue'},
-                {text:'Angular'},
-                {text:'React'}
-            ]
-        }
-    })
+var app = new Vue({
+    el:'#app',
+    data:{
+        items:[
+            {text:'Vue'},
+            {text:'Angular'},
+            {text:'React'}
+        ]
+    }
+})
 ````
 
 * v-for可以绑定数组型数据进行绑定，并使用item in items形式进行数据的遍历操作
