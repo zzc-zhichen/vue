@@ -7,7 +7,8 @@
 </head>
 <body>
 <div id='app'>
-    <p>Hi,I'm{{fullName}}</p>
+    <p v-bind:style="styleObj">Hello vue!</p>
+    <p v-bind:style="[styleObj,bgObj]">你好</p>
 </div>
 
 
@@ -15,17 +16,14 @@
     var app = new Vue({
         el:'#app',
         data:{
-            message:'hello vue!',
-            name:'Tom'
-        },
-        computed:{
-            fullName:{
-                get:function () {
-                    return this.name
-                },
-                set:function (value) {
-                    this.name = value
-                }
+            styleObj:{
+                fontWeight:800,
+                color:'red'
+            },
+            bgObj:{
+                width:'100px',
+                height:'80px',
+                background:'#ccc'
             }
         }
     })
