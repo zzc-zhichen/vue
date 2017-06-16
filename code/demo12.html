@@ -4,10 +4,30 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+        .static{
+            width: 200px;
+            height: 100px;
+            background: #cccccc;
+        }
+        .active{
+            color: red;
+        }
+        .error {
+            font-weight: 800;
+        }
+    </style>
 </head>
 <body>
 <div id='app'>
-    <p>Hi,I'm{{fullName}}</p>
+    <!--直接绑定对象的内容-->
+    <p class="static" v-bind:class="{active:isActive,error:hasError}">Hello world</p>
+     <!--绑定对象-->
+    <p v-bind:class="classObj">啊偶</p>
+    <p v-bind:class="style">你好</p>
+    <!--绑定数组-->
+    <p v-bind:class="[staticClass,activeClass,errorClass]">奥布拉</p>
+    <button @click="changeColor">click me</button>
 </div>
 
 
@@ -15,17 +35,29 @@
     var app = new Vue({
         el:'#app',
         data:{
-            message:'hello vue!',
-            name:'Tom'
+            isActive:true,
+            hasError:true,
+            classObj:{
+                static:true,
+                active:true,
+                error:true
+            },
+            staticClass:'static',
+            activeClass:'active',
+            errorClass:'error'
         },
         computed:{
-            fullName:{
-                get:function () {
-                    return this.name
-                },
-                set:function (value) {
-                    this.name = value
+            style:function () {
+                return{
+                    active:this.isActive,
+                    static:true,
+                    error:this.hasError
                 }
+            }
+        },
+        methods: {
+            changeColor:function () {
+                this.isActive = !this.isActive
             }
         }
     })
