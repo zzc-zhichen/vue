@@ -7,13 +7,26 @@
 </head>
 <body>
 <div id='app'>
-    <p v-if="ok">Hello vue!</p>
-    <p v-else>你好Vue!</p>
-    <template v-if="motto">
-        <h1>Steve Jobs</h1>
-        <p>motto:stay hungry ! stay foolish</p>
-    </template>
-    <p v-show="ok">Show Me</p>
+    <ol>
+        <li v-for="book in books">
+            {{book.name}}
+        </li>
+    </ol>
+    <ul>
+        <li v-for="(food,index) in foods">
+            {{index}}---{{food}}---{{delicious}}
+        </li>
+    </ul>
+    <ul>
+        <li v-for="(value,key,index) in object">
+            {{index}}·{{key}}·{{value}}
+        </li>
+    </ul>
+    <div>
+        <span v-for="n in 10" style="margin-left: 5px;">{{n}}</span>
+    </div>
+    <span v-for="n in evenNumbers" style="margin-left: 5px;">{{n}}</span>
+    <span v-for="n in odd(counts)" style="margin-left: 5px;">{{n}}</span>
 </div>
 
 
@@ -21,8 +34,36 @@
     var app = new Vue({
         el:'#app',
         data:{
-            ok:true,
-            motto:true
+            delicious:'delicious',
+            books:[
+                {name:'HongLouMeng'},
+                {name:'SanGuo'}
+            ],
+            foods:[
+                'tomato',
+                'potato',
+                'ice cream'
+            ],
+            object:{
+                name:'lilei',
+                age:'18'
+            },
+            numbers:[1,2,3,4,5,6,7,8,9,10],
+            counts:[1,2,3,4,5]
+        },
+        computed:{
+            evenNumbers:function () {
+                return this.numbers.filter(function (number) {
+                    return number%2 === 0;
+                })
+            }
+        },
+        methods:{
+            odd:function (counts) {
+                return counts.filter(function (count) {
+                    return count%2 === 1;
+                })
+            }
         }
     })
 </script>
