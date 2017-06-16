@@ -7,7 +7,7 @@
 </head>
 <body>
 <div id="app">
-    <p v-on:click="counter+=1">{{counter}}</p>
+    <p v-on:click="greet">{{message}}</p>
 </div>
 
 
@@ -15,7 +15,12 @@
     var app = new Vue({
         el:'#app',
         data:{
-           counter:0
+           message:"Hello vue!"
+        },
+        methods:{
+            greet:function (event) {
+                alert(this.message)
+            }
         }
     })
 </script>
