@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child some-text="hello"></child>
+        <br>
+        <child v-bind:some-text="message"></child>
+    </div>
+
+
+
+<script>
+    Vue.component('child',{
+        template:'<div>{{someText}}</div>',
+        props:['someText']
+    })
+    var Child = {
+        template:'<h3>Hello vue!</h3>'
+    }
+    var app = new Vue({
+        el:'#app',
+        components:{
+            'my-component':Child
+        },
+        data:{
+            message:'你好'
+        }
+    })
+</script>
+</body>
+</html>

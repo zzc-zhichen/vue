@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="radio" id="man" value="man" v-model="picked">
+    <label for="man">Man</label>
+    <br>
+    <input type="radio" id="woman" value="woman" v-model="picked">
+    <label for="woman">Woman</label>
+    <div style="margin-left: 10px;"></div>
+</div>
+
+
+
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+           message:"Hello vue!",
+           picked:'man'
+        }
+    })
+</script>
+</body>
+</html>

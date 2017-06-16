@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <counter></counter>
+        <counter></counter>
+        <counter></counter>
+    </div>
+
+
+
+<script>
+    Vue.component('counter',{
+        template:'<button @click="count+=1">{{count}}</button>',
+        data:function () {
+            return {
+                count:0
+            }
+        }
+    })
+    var app = new Vue({
+        el:'#app'
+    })
+</script>
+</body>
+</html>
