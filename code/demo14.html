@@ -7,8 +7,13 @@
 </head>
 <body>
 <div id='app'>
-    <p v-bind:style="styleObj">Hello vue!</p>
-    <p v-bind:style="[styleObj,bgObj]">你好</p>
+    <p v-if="ok">Hello vue!</p>
+    <p v-else>你好Vue!</p>
+    <template v-if="motto">
+        <h1>Steve Jobs</h1>
+        <p>motto:stay hungry ! stay foolish</p>
+    </template>
+    <p v-show="ok">Show Me</p>
 </div>
 
 
@@ -16,15 +21,8 @@
     var app = new Vue({
         el:'#app',
         data:{
-            styleObj:{
-                fontWeight:800,
-                color:'red'
-            },
-            bgObj:{
-                width:'100px',
-                height:'80px',
-                background:'#ccc'
-            }
+            ok:true,
+            motto:true
         }
     })
 </script>
