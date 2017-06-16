@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id='app'>
+    <p v-bind:style="styleObj">Hello vue!</p>
+    <p v-bind:style="[styleObj,bgObj]">你好</p>
+</div>
+
+
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            styleObj:{
+                fontWeight:800,
+                color:'red'
+            },
+            bgObj:{
+                width:'100px',
+                height:'80px',
+                background:'#ccc'
+            }
+        }
+    })
+</script>
+</body>
+</html>
